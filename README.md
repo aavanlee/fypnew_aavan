@@ -2,10 +2,8 @@ Usage steps for Ubuntu 16.04:
 
 Downloads
 1. Download/clone this repository
-2. Download the folder "annotations" from https://www.dropbox.com/sh/fg1timcbrcdyhye/AAAs6z-ggS02ZFsVKhSLIUEEa?dl=0
-3. Place the folder "annotations" in "data" folder
-4. Download the file "model_50000" from https://www.dropbox.com/s/4rq62ru3ec9wdjk/model_50000?dl=0
-5. Place the file "model_50000" in "result" folder
+2. Download the file "model_checkpint.pth.tar" from https://drive.google.com/file/d/1OMnMuMuxEtKVmws2zNAlB3nhCVnwUTS4/view?usp=sharing
+3. Place the file "model_checkpint.pth.tar" in the repo directory
 
 Ubuntu python setup
 1. sudo apt-get update
