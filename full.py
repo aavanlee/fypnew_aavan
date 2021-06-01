@@ -13,8 +13,10 @@ import csv
 import pandas as pd
 from dicttoxml import dicttoxml
 import sys
+import shutil
 
 start_time = time.time()
+os.mkdir('frames') 
 vidname = str(sys.argv[1])
 file = "./videos/" +vidname
 #file = video.mp4 
@@ -25,14 +27,15 @@ os.system(extractcmd)
 #output to ./frames
 
 #image caption
-os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
+#os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
+os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
 
 #toxml
 f = os.path.splitext(vidname)
-filename = f[0] +"-Scenes.csv"
+csvfilename = f[0] +"-Scenes.csv"
 
 # Read in the data
-full_scenes_df = pd.read_csv(filename)
+full_scenes_df = pd.read_csv(csvfilename)
 scenes_df = full_scenes_df[['Scene Number', 'Start Timecode', 'Length (seconds)']].copy()
 scene_count = scenes_df.shape[0]
 #print(scene_count)
@@ -49,30 +52,39 @@ prediction_df.sort_values(by=['Frame'], inplace=True, ascending=True)
 prediction_df.reset_index(inplace=True, drop = True)
 #print(prediction_df)
 scenes_df['Caption'] = pd.Series(prediction_df['Caption'])
-print(scenes_df)
-
-print('\n')
 scenes_df.columns = ['frame#', 'stime', 'dur(s)', 'caption']
+print('\n')
+print(scenes_df)
+#print('\n')
 
-def xml_encode(row):
-    xmlItem = ['<ImageSegment']
-    for ImageSegment in row.index:
-        xmlItem.append('{0}="{1}"'.format(ImageSegment, row[ImageSegment]))
-    xmlItem.append('</ImageSegment>')
-    return ' '.join(xmlItem)
-
-temp = '\n'.join(scenes_df.apply(xml_encode, axis=1))
-#print(temp)
-temp = '<AudioDoc name="' +f[0]+'">\n<ImageCaptionList>\n'+temp +"\n</ImageCaptionList>\n</AudioDoc>"
-print(temp)
-
-#with open("OUTPUT.xml", "w") as f:
-#   f.write(temp)
-
+out = scenes_df.to_json(orient='records')
+outputfile = vidname + '-OUTPUT.json'
+with open(outputfile, 'w') as f:
+    f.write(out)
 
 
 end_time = time.time()
 req_time = end_time - start_time
 print("time taken: ", req_time)
 
+####CLEANUP
+deletethis = "prediction.json"
+deletealso = csvfilename
 
+## If file exists, delete it ##
+if os.path.isfile(deletethis):
+    os.remove(deletethis)
+else:    ## Show an error ##
+    print("Error: %s file not found" % deletethis)
+
+if os.path.isfile(deletealso):
+    os.remove(deletealso)
+else:    ## Show an error ##
+    print("Error: %s file not found" % deletealso)
+
+##REMOVING FRAMES
+dir_path = './frames'
+try:
+    shutil.rmtree(dir_path)
+except OSError as e:
+    print("Error: %s : %s" % (dir_path, e.strerror))
