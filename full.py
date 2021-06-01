@@ -11,12 +11,11 @@ import time
 import json
 import csv
 import pandas as pd
-from dicttoxml import dicttoxml
+#from dicttoxml import dicttoxml
 import sys
 import shutil
 
 start_time = time.time()
-os.mkdir('frames') 
 vidname = str(sys.argv[1])
 file = "./videos/" +vidname
 #file = video.mp4 
