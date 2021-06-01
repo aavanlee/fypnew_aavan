@@ -46,4 +46,7 @@ Running without API
 3. Example: python full.py airplane.mp4
 
 Running with API
-1.
+1. Run from terminal using $ python apistart.py 
+2. Go to http://127.0.0.1:5000/captionvideo on broswer
+3. Browse disk for video file
+4. Click upload
