@@ -26,9 +26,6 @@ Ubuntu setup
 
 Installing requirements
 1. pip install -r requirements.txt
-2. sudo -i
-3. echo 1 > /proc/sys/vm/overcommit_memory
-4. exit
 
 OR
 1. pip install pandas
