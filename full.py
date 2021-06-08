@@ -29,15 +29,13 @@ os.system(extractcmd)
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
 os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
 
-#toxml
+#tojson
 f = os.path.splitext(vidname)
 csvfilename = f[0] +"-Scenes.csv"
 
 # Read in the data
 full_scenes_df = pd.read_csv(csvfilename)
 scenes_df = full_scenes_df[['Scene Number', 'Start Timecode', 'Length (seconds)']].copy()
-scene_count = scenes_df.shape[0]
-#print(scene_count)
 #print(scenes_df.head(5))
 
 path_to_current_file = os.path.realpath(__file__)
@@ -65,6 +63,8 @@ with open(outputfile, 'w') as f:
 end_time = time.time()
 req_time = end_time - start_time
 print("time taken: ", req_time)
+
+
 
 ####CLEANUP
 deletethis = "prediction.json"
