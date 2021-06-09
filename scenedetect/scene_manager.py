@@ -427,6 +427,7 @@ def save_images(scene_list, video_manager, num_images=-1, frame_margin=1,
             if progress_bar:
                 progress_bar.update(1)
 
+
     if not completed:
         logging.error('Could not generate all output images.')
 

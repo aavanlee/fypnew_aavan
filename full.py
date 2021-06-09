@@ -35,7 +35,7 @@ csvfilename = f[0] +"-Scenes.csv"
 
 # Read in the data
 full_scenes_df = pd.read_csv(csvfilename)
-scenes_df = full_scenes_df[['Scene Number', 'Start Timecode', 'Length (seconds)']].copy()
+scenes_df = full_scenes_df[['Scene Number', 'Start Time (seconds)', 'Length (seconds)']].copy()
 #print(scenes_df.head(5))
 
 path_to_current_file = os.path.realpath(__file__)
