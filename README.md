@@ -22,6 +22,7 @@ Ubuntu setup
 1. Change Directory to fypnew_aavan
 2. python3.8 -m pip install virtualenv
 3. virtualenv -p python3.8 venv-vidcap
+4. source venv-vidcap/bin/activate
 
 Installing requirements
 1. pip install -r requirements.txt
