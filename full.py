@@ -17,7 +17,7 @@ import shutil
 
 start_time = time.time()
 vidname = str(sys.argv[1])
-file = "./videos/" +vidname
+file = "./video_uploads/" +vidname
 #file = video.mp4 
 
 #extract keyframe

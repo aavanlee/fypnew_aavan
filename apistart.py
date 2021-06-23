@@ -2,7 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = './video_uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
 
 app = Flask(__name__)
@@ -52,4 +52,4 @@ def upload_file():
     </form>
     '''
 
-app.run(debug=True, port=5000)
+app.run(debug=True, port=5001)
