@@ -21,7 +21,7 @@ file = "./videos/" +vidname
 #file = video.mp4 
 
 #extract keyframe
-extractcmd = "python scenedetect.py --input " +file +" detect-content list-scenes save-images"
+extractcmd = "python scenedetect.py -m 2s --input " +file +" detect-content list-scenes save-images"
 os.system(extractcmd)
 #output to ./frames
 
