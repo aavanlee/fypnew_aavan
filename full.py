@@ -1,6 +1,4 @@
-#SETUP
-#cocoapi/PythonAPI
-#pip install -e .
+
 
 import io
 import os
@@ -25,6 +23,8 @@ extractcmd = "python scenedetect.py -m 2s --input " +file +" detect-content list
 os.system(extractcmd)
 #output to ./frames
 
+#sys.exit("Stopped to get frames")
+#start_time = time.time()
 #image caption
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
 os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
@@ -60,10 +60,6 @@ with open(outputfile, 'w') as f:
     f.write(out)
 
 
-end_time = time.time()
-req_time = end_time - start_time
-print("time taken: ", req_time)
-
 
 
 ####CLEANUP
@@ -87,3 +83,10 @@ try:
     shutil.rmtree(dir_path)
 except OSError as e:
     print("Error: %s : %s" % (dir_path, e.strerror))
+
+
+end_time = time.time()
+req_time = end_time - start_time
+print("time taken: ", req_time)
+
+
