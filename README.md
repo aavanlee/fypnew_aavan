@@ -51,3 +51,9 @@ Running with API
 2. Go to http://127.0.0.1:5001/captionvideo on broswer
 3. Browse disk for video file
 4. Click upload
+
+To generate captions for evaluating against coco dataset format:
+1. Put images to caption into folder named "val2014" (default)
+2. $ python fullforcoco.py
+3. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
+4. To change folder name, change directory_in_str value in captionforcoco.py
