@@ -37,24 +37,27 @@ OR
 7. pip install scikit-image
 8. pip install Flask
 
-Running without API
+Running without API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
-1. Put videos in "video_uploads" folder
+1. Put videos to test in "video_uploads" folder
 2. Run from terminal using $ python full.py <videofile_name>
 3. Example: python full.py airplane.mp4
 
-Running with API
+Running with API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
 1. Run from terminal using $ python apistart.py 
-2. Go to http://127.0.0.1:5001/captionvideo on broswer
+2. Go to http://127.0.0.1:5001/captionvideo on browser
 3. Browse disk for video file
 4. Click upload
+5. Uploaded videos will be saved to video_uploads directory
 
 To evaluate against coco dataset format:
+
 0. pip install pycocoevalcap
-1. Move model checkpoint file and wordmap into "eval" directory (default: model_checkpint.pth.tar and wordmap.json)
-2. Put images to evaluate against into folder named "val2014" (default for evaluating against COCO val2014 set)
-3. $ python fullforcoco.py
-4. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
+1. Move model checkpoint file and wordmap into "eval" directory (default: model_checkpint.pth.tar and wordmap.json) 
+2. Change directory to "eval"
+3. Put images to evaluate against into folder named "val2014" (default for evaluating against COCO val2014 set)
+4. Run from terminal using $ python fullforcoco.py
+5. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
