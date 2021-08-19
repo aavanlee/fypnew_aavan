@@ -52,8 +52,9 @@ Running with API
 3. Browse disk for video file
 4. Click upload
 
-To generate captions for evaluating against coco dataset format:
-1. Put images to caption into folder named "val2014" (default)
-2. $ python fullforcoco.py
-3. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
-4. To change folder name, change directory_in_str value in captionforcoco.py
+To evaluate against coco dataset format:
+0. pip install pycocoevalcap
+1. Move model checkpoint file and wordmap into "eval" directory (default: model_checkpint.pth.tar and wordmap.json)
+2. Put images to evaluate against into folder named "val2014" (default for evaluating against COCO val2014 set)
+3. $ python fullforcoco.py
+4. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
