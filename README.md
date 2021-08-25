@@ -37,6 +37,8 @@ OR
 7. pip install scikit-image
 8. pip install Flask
 
+## Running
+
 Running without API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
