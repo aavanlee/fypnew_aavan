@@ -44,7 +44,8 @@ Running without API:
 0. Activate venv: $ source venv-vidcap/bin/activate
 1. Put videos to test in "video_uploads" folder
 2. Run from terminal using $ python full.py <videofile_name>
-3. Example: python full.py airplane.mp4
+3. To keep frames, run from terminal using $ python full.py <videofile_name> keepframes
+4. Example: python full.py elsa.mp4 OR python full.py elsa.mp4 keepframes
 
 Running with API:
 
@@ -55,11 +56,22 @@ Running with API:
 4. Click upload
 5. Uploaded videos will be saved to video_uploads directory
 
-To evaluate against coco dataset format:
+To evaluate against COCO format dataset:
 
 0. pip install pycocoevalcap
 1. Move model checkpoint file and wordmap into "eval" directory (default: model_checkpint.pth.tar and wordmap.json) 
 2. Change directory to "eval"
-3. Put images to evaluate against into folder named "val2014" (default for evaluating against COCO val2014 set)
-4. Run from terminal using $ python fullforcoco.py
-5. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
+3. Put images to evaluate against into folder (default is "val2014" for evaluating against COCO val2014 set, DSET is for custom dataset)
+4. Folder to use can be changed in captionforcoco.py
+5. Run from terminal using $ python fullforcoco.py
+6. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
+7. For custom dataset, ensure annotation_file in coco_eval.py is correct (default is captions_val2014.json)
+
+
+
+To evaluate against custom COCO dataset with video output(output from full.py)
+1. Move output file eg: elsa.mp4-OUTPUT.json to eval directory
+2. Change directory to "eval"
+3. Run from terminal using $python coco_eval_video_output.py <videofile_name> 
+4. Example: python coco_eval_video_output.py elsa.mp4
+
