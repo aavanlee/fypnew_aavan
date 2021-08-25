@@ -1,8 +1,29 @@
+import json
+import os
+import pandas as pd
+import sys
 from pycocotools.coco import COCO
 from pycocoevalcap.eval import COCOEvalCap
 
-#annotation_file = 'captions_val2014.json' #for coco val2014
-annotation_file = 'cocomaked.json' #for test DSET
+vidname = str(sys.argv[1])
+file = vidname + '-OUTPUT.json'
+path_to_current_file = os.path.realpath(__file__)
+current_directory = os.path.split(path_to_current_file)[0]
+path_to_file = os.path.join(current_directory, file)
+with open(path_to_file) as mydata:
+    data = json.load(mydata)
+df = pd.DataFrame(data[0:],columns=data[0])
+df.drop('stime', axis=1, inplace=True)
+df.drop('dur(s)', axis=1, inplace=True)
+df.columns = ['image_id', 'caption']
+print(df)
+out = df.to_json(orient='records')
+outputfile = 'coco-OUTPUT.json'
+with open(outputfile, 'w') as f:
+    f.write(out)
+   
+#annotation_file = 'captions_val2014.json' ###FOR COCO VAL2014 SET
+annotation_file = 'cocomaked.json' ###FOR TEST SET DEST
 
 results_file = 'coco-OUTPUT.json'
 

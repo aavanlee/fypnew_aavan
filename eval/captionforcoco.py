@@ -217,8 +217,9 @@ if __name__ == '__main__':
 
     # folder
     predictiondict = {}
-    directory_in_str = "./val2014/"
-    #for using coco val set
+    directory_in_str = "./DSET/"
+    #val2014for using coco val set
+    #DSET for using test DSET
     directory = os.fsencode(directory_in_str)
     for file in os.listdir(directory):
         filename = os.fsdecode(file)

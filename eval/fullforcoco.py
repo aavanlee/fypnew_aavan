@@ -28,8 +28,11 @@ with open(path_to_file) as mydata:
 prediction_df = pd.DataFrame(list(prediction_dict.items()), columns = ['image_id', 'caption'])
 prediction_df.sort_values(by=['image_id'], inplace=True, ascending=True)
 prediction_df.reset_index(inplace=True, drop = True)
-print(prediction_df)
-prediction_df['image_id'] = prediction_df['image_id'].str[19:-4]
+#print(prediction_df)
+#prediction_df['image_id'] = prediction_df['image_id'].str[19:-4]
+#[19:-4] deletes str values and extension for coco val2014
+prediction_df['image_id'] = prediction_df['image_id'].str[5:-4]
+#[5:-4] deletes str values and extension for DSET
 prediction_df['image_id'] = pd.to_numeric(prediction_df['image_id'])
 print(prediction_df)
 #scenes_df['Caption'] = pd.Series(prediction_df['Caption'])

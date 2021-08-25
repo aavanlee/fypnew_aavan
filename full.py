@@ -29,7 +29,7 @@ os.system(extractcmd)
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
 os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
 
-#tojson
+
 f = os.path.splitext(vidname)
 csvfilename = f[0] +"-Scenes.csv"
 
@@ -78,12 +78,18 @@ else:    ## Show an error ##
     print("Error: %s file not found" % deletealso)
 
 ##REMOVING FRAMES
-dir_path = './frames'
 try:
-    shutil.rmtree(dir_path)
-except OSError as e:
-    print("Error: %s : %s" % (dir_path, e.strerror))
+    if str(sys.argv[2]) == "keepframes":
+        print("Frames kept")
+except:
+    dir_path = './frames'
+    try:
+        shutil.rmtree(dir_path)
+    except OSError as e:
+        print("Error: %s : %s" % (dir_path, e.strerror))
+    print("Frames removed")
 
+    
 
 end_time = time.time()
 req_time = end_time - start_time
