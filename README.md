@@ -70,8 +70,8 @@ To evaluate against COCO format dataset:
 
 
 To evaluate against custom COCO dataset with video captioning output(output from full.py)
-1. Move the output file eg: elsa.mp4-OUTPUT.json to eval directory
+1. Move the output file eg: covid.mp4-OUTPUT.json to eval directory
 2. Change directory to "eval"
 3. Run from terminal using $python coco_eval_video_output.py <videofile_name> 
-4. Example: python coco_eval_video_output.py elsa.mp4
+4. Example: python coco_eval_video_output.py covid.mp4
 
