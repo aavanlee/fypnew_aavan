@@ -18,14 +18,14 @@ df.drop('dur(s)', axis=1, inplace=True)
 df.columns = ['image_id', 'caption']
 print(df)
 out = df.to_json(orient='records')
-outputfile = 'coco-OUTPUT.json'
+outputfile = vidname + '-coco_OUTPUT.json'
 with open(outputfile, 'w') as f:
     f.write(out)
    
 #annotation_file = 'captions_val2014.json' ###FOR COCO VAL2014 SET
-annotation_file = 'cocomaked.json' ###FOR TEST SET DEST
+annotation_file = vidname + '-coco_captions.json' ###FOR TEST SET DEST
 
-results_file = 'coco-OUTPUT.json'
+results_file = vidname + '-coco_OUTPUT.json'
 
 # create coco object and coco_result object
 coco = COCO(annotation_file)

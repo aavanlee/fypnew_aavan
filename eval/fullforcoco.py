@@ -31,7 +31,7 @@ prediction_df.reset_index(inplace=True, drop = True)
 #print(prediction_df)
 #prediction_df['image_id'] = prediction_df['image_id'].str[19:-4]
 #[19:-4] deletes str values and extension for coco val2014
-prediction_df['image_id'] = prediction_df['image_id'].str[5:-4]
+prediction_df['image_id'] = prediction_df['image_id'].str[8:-4]
 #[5:-4] deletes str values and extension for DSET
 prediction_df['image_id'] = pd.to_numeric(prediction_df['image_id'])
 print(prediction_df)

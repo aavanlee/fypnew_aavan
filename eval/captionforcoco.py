@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
     # folder
     predictiondict = {}
-    directory_in_str = "./DSET/"
+    directory_in_str = "./DATASET/"
     #val2014for using coco val set
     #DSET for using test DSET
     directory = os.fsencode(directory_in_str)

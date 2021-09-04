@@ -36,30 +36,30 @@ for index, row in captionsraw_df.iterrows():
     images.append({
         'license': 12345,
         'filename': row['filename'],
-        'id': int(row['filename'][5:-4])
+        'id': int(row['filename'][8:-4])
     })
 
 ##ANNOTATIONS(IMAGE CAPTIONING)
 #for (filename, caption1, caption2, caption3, caption4) in captionsraw_df.iteritems():
 for index, row in captionsraw_df.iterrows():
     annotations.append({
-        'image_id': int(row['filename'][5:-4]),
-        'id': int(row['filename'][5:-4]),
+        'image_id': int(row['filename'][8:-4]),
+        'id': int(row['filename'][8:-4]),
         'caption': row['caption1']
     })
     annotations.append({
-        'image_id': int(row['filename'][5:-4]),
-        'id': int(row['filename'][5:-4]),
+        'image_id': int(row['filename'][8:-4]),
+        'id': int(row['filename'][8:-4]),
         'caption': row['caption2']
     })
     annotations.append({
-        'image_id': int(row['filename'][5:-4]),
-        'id': int(row['filename'][5:-4]),
+        'image_id': int(row['filename'][8:-4]),
+        'id': int(row['filename'][8:-4]),
         'caption': row['caption3']
     })
     annotations.append({
-        'image_id': int(row['filename'][5:-4]),
-        'id': int(row['filename'][5:-4]),
+        'image_id': int(row['filename'][8:-4]),
+        'id': int(row['filename'][8:-4]),
         'caption': row['caption4']
     })
 

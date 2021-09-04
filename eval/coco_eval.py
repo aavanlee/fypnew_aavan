@@ -2,7 +2,7 @@ from pycocotools.coco import COCO
 from pycocoevalcap.eval import COCOEvalCap
 
 #annotation_file = 'captions_val2014.json' #FOR COCO VAL2014 SET
-annotation_file = 'cocomaked.json' #FOR TEST SET DSET
+annotation_file = 'cocomade_2021.json' #FOR TEST SET DSET
 
 results_file = 'coco-OUTPUT.json'
 
