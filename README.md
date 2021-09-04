@@ -63,15 +63,16 @@ To evaluate against COCO format dataset:
 2. Change directory to "eval"
 3. Put images to evaluate against into folder (default is "val2014" for evaluating against COCO val2014 set, DSET is for custom dataset)
 4. Folder to use can be changed in captionforcoco.py
-5. Run from terminal using $ python fullforcoco.py
-6. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
-7. For custom dataset, ensure annotation_file in coco_eval.py is correct (default is captions_val2014.json)
+5. Ensure caption file in COCO format is in "eval" directory(Default "captions_val2014.json" is in val2014 directory)
+6. Run from terminal using $ python fullforcoco.py
+7. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
+8. For custom dataset, ensure annotation_file in coco_eval.py is correct (default is captions_val2014.json)
 
 
 
 To evaluate against custom COCO dataset with video captioning output(output from full.py)
-1. Move output file eg: elsa.mp4-OUTPUT.json to eval directory
+1. Move the output file eg: covid.mp4-OUTPUT.json to eval directory
 2. Change directory to "eval"
 3. Run from terminal using $python coco_eval_video_output.py <videofile_name> 
-4. Example: python coco_eval_video_output.py elsa.mp4
+4. Example: python coco_eval_video_output.py covid.mp4
 
