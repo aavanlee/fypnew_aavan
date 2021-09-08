@@ -57,7 +57,7 @@ Running with API:
 4. Click upload
 5. Uploaded videos will be saved to video_uploads directory
 
-## Evaulation
+## Evaluation
 If not evaluating, eval directory can be removed.
 
 To evaluate against COCO format dataset:
