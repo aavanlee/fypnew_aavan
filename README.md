@@ -1,3 +1,4 @@
+## Installation
 Usage steps for Ubuntu 16.04:
 
 Downloads
@@ -37,7 +38,7 @@ OR
 7. pip install scikit-image
 8. pip install Flask
 
-## Running
+## Video Captioning
 
 Running without API:
 
@@ -55,6 +56,9 @@ Running with API:
 3. Browse disk for video file
 4. Click upload
 5. Uploaded videos will be saved to video_uploads directory
+
+## Evaulation
+If not evaluating, eval directory can be removed.
 
 To evaluate against COCO format dataset:
 
