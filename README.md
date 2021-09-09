@@ -20,7 +20,7 @@ Ubuntu python setup
 11. sudo rm -f Python-3.8.5.tgz
 
 Ubuntu setup
-1. Change Directory to fypnew_aavan
+1. Change Directory to vidcaption_aavan
 2. python3.8 -m pip install virtualenv
 3. virtualenv -p python3.8 venv-vidcap
 4. source venv-vidcap/bin/activate
@@ -44,9 +44,9 @@ Running without API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
 1. Put videos to test in "video_uploads" folder
-2. Run from terminal using $ python full.py <videofile_name>
-3. To keep frames, run from terminal using $ python full.py <videofile_name> keepframes
-4. Example: python full.py elsa.mp4 OR python full.py elsa.mp4 keepframes
+2. Run from terminal using $ python caption_video.py <videofile_name>
+3. To keep frames, run from terminal using $ python caption_video.py <videofile_name> keepframes
+4. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4 keepframes
 
 Running with API:
 
@@ -74,9 +74,9 @@ To evaluate against COCO format dataset:
 
 
 
-To evaluate against custom COCO dataset with video captioning output(output from full.py)
+To evaluate against custom COCO dataset with video captioning output(output from caption_video.py)
 1. Move the output file eg: covid.mp4-OUTPUT.json to eval directory
 2. Change directory to "eval"
-3. Run from terminal using $python coco_eval_video_output.py <videofile_name> 
-4. Example: python coco_eval_video_output.py covid.mp4
+3. Run from terminal using $python eval_video_output.py <videofile_name> 
+4. Example: python eval_video_output.py covid.mp4
 
