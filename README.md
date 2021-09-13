@@ -45,8 +45,9 @@ Running without API:
 0. Activate venv: $ source venv-vidcap/bin/activate
 1. Put videos to test in "video_uploads" folder
 2. Run from terminal using $ python caption_video.py <videofile_name>
-3. To keep frames, run from terminal using $ python caption_video.py <videofile_name> keepframes
-4. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4 keepframes
+3. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4
+4. To keep the video frames, run from terminal using $ python caption_video.py <videofile_name> keepframes
+5. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4 keepframes
 
 Running with API:
 
@@ -60,23 +61,24 @@ Running with API:
 ## Evaluation
 If not evaluating, eval directory can be removed.
 
-To evaluate against COCO format dataset:
+To caption and evaluate against custom dataset in COCO format:
 
 0. pip install pycocoevalcap
 1. Move model checkpoint file and wordmap into "eval" directory (default: model_checkpint.pth.tar and wordmap.json) 
-2. Change directory to "eval"
-3. Put images to evaluate against into folder (default is "val2014" for evaluating against COCO val2014 set, DSET is for custom dataset)
-4. Folder to use can be changed in captionforcoco.py
-5. Ensure caption file in COCO format is in "eval" directory(Default "captions_val2014.json" is in val2014 directory)
-6. Run from terminal using $ python fullforcoco.py
-7. Output file coco-OUTPUT.json is used to evaluate against caption json file in COCO format 
-8. For custom dataset, ensure annotation_file in coco_eval.py is correct (default is captions_val2014.json)
+2. Put folder with images to caption into "eval" directory
+3. Change directory to "eval"
+4. Ensure caption file in COCO format(for images to be captioned) is in "eval" directory, eg: "DATASET_coco_captions.json"
+5. Run from terminal using $ python caption_and_eval.py <directory_name>
+6. Example: python caption_and_eval.py DATASET
+7. To keep output file of captioning, run from terminal using $ python caption_and_eval.py <directory_name> keepoutput
+8. Example: python caption_and_eval.py DATASET keepoutput
 
 
+To evaluate against video captions in COCO format, using video captioning output(output from caption_video.py):
 
-To evaluate against custom COCO dataset with video captioning output(output from caption_video.py)
 1. Move the output file eg: covid.mp4-OUTPUT.json to eval directory
 2. Change directory to "eval"
-3. Run from terminal using $python eval_video_output.py <videofile_name> 
-4. Example: python eval_video_output.py covid.mp4
+3. Ensure caption file in COCO format is in "eval" directory, eg: "covid.mp4-coco_captions.json"
+4. Run from terminal using $python eval_video_output.py <videofile_name> 
+5. Example: python eval_video_output.py covid.mp4
 
