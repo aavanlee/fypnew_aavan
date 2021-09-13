@@ -215,9 +215,11 @@ if __name__ == '__main__':
         word_map = json.load(j)
     rev_word_map = {v: k for k, v in word_map.items()}  # ix2word
 
-    # folder
+    
     predictiondict = {}
-    directory_in_str = "./DATASET/"
+    directory_in_str = "./" + args.dir + "/"
+    print("\n")
+    print("Captioning " +directory_in_str+ "and evaluating against '" +args.dir+ "_coco_captions.json'")
     #val2014 for using coco val set
     #DATASET for using test dataset
     directory = os.fsencode(directory_in_str)

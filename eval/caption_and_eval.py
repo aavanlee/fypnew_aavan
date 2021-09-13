@@ -15,9 +15,14 @@ import shutil
 
 start_time = time.time()
 
+directory = str(sys.argv[1])
+#image caption
+cmd = 'python captionforcoco.py --dir=' +directory+ ' --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5'
+os.system(cmd)
+
 #image caption
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
-os.system('python captionforcoco.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
+#os.system('python captionforcoco.py --dir=--model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
 
 path_to_current_file = os.path.realpath(__file__)
 current_directory = os.path.split(path_to_current_file)[0]
@@ -45,7 +50,7 @@ print(prediction_df)
 #print('\n')
 
 out = prediction_df.to_json(orient='records')
-outputfile = 'coco-OUTPUT.json'
+outputfile = directory + '_coco-OUTPUT.json'
 with open(outputfile, 'w') as f:
     f.write(out)
 
@@ -58,8 +63,21 @@ if os.path.isfile(deletethis):
 else:    ## Show an error ##
     print("Error: %s file not found" % deletethis)
 
-#using pycocoevalcap eval
-os.system('python coco_eval.py')
+#eval using pycocoevalcap eval
+command = 'python coco_eval.py ' +directory
+os.system(command)
+
+## removing output file
+try:
+    if str(sys.argv[2]) == "keepoutput":
+        print("Output file kept")
+except:
+    deletethis = directory +"_coco-OUTPUT.json"
+    try:
+        os.remove(deletethis)
+    except OSError as e:
+        print("Error: %s file not found" % deletethis)
+
 
 
 end_time = time.time()

@@ -46,3 +46,13 @@ coco_eval.evaluate()
 # print output evaluation scores
 for metric, score in coco_eval.eval.items():
     print(f'{metric}: {score:.3f}')
+
+
+####CLEANUP
+deletethis = vidname + '-coco_OUTPUT.json'
+
+## If file exists, delete it ##
+if os.path.isfile(deletethis):
+    os.remove(deletethis)
+else:    ## Show an error ##
+    print("Error: %s file not found" % deletethis)

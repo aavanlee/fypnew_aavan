@@ -1,10 +1,13 @@
 from pycocotools.coco import COCO
 from pycocoevalcap.eval import COCOEvalCap
+import sys
 
+name = str(sys.argv[1])
 #annotation_file = 'captions_val2014.json' #FOR COCO VAL2014 SET
-annotation_file = 'cocomade_2021.json' #FOR TEST SET DSET
 
-results_file = 'coco-OUTPUT.json'
+annotation_file = name + '_coco_captions.json' #FOR TEST SET DSET
+
+results_file = name + '_coco-OUTPUT.json'
 
 # create coco object and coco_result object
 coco = COCO(annotation_file)

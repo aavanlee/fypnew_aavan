@@ -237,5 +237,5 @@ data.append({
 
 print(json.dumps(data, indent=4))
 
-with open('captionsraw.json', 'w') as outfile:
+with open('captions.json', 'w') as outfile:
     json.dump(data, outfile)
