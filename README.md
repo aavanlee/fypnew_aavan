@@ -49,7 +49,7 @@ Running without API:
 2. Run from terminal using $ python caption_video.py <videofile_name>
 3. Example: python caption_video.py elsa.mp4 
 4. To keep the video frames, run from terminal using $ python caption_video.py <videofile_name> keepframes
-5. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4 keepframes
+5. Example: python caption_video.py elsa.mp4 keepframes
 
 Running with API:
 
