@@ -39,8 +39,12 @@ OR
 8. pip install Flask
 
 ## Video Captioning
-note: find link to model 
+
+things to do:
+find link to model and put there
 check video extensions which can use
+clean up some more
+
 
 Running without API:
 
