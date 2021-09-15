@@ -39,13 +39,15 @@ OR
 8. pip install Flask
 
 ## Video Captioning
+note: find link to model 
+check video extensions which can use
 
 Running without API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
-1. Put videos to test in "video_uploads" folder
+1. Put videos to caption in "video_uploads" folder
 2. Run from terminal using $ python caption_video.py <videofile_name>
-3. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4
+3. Example: python caption_video.py elsa.mp4 
 4. To keep the video frames, run from terminal using $ python caption_video.py <videofile_name> keepframes
 5. Example: python caption_video.py elsa.mp4 caption_video full.py elsa.mp4 keepframes
 
