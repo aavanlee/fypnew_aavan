@@ -37,7 +37,8 @@ OR
 5. pip install torchvision
 6. pip install matplotlib
 7. pip install scikit-image
-8. pip install Flask
+8. pip install Flask (API)
+9. pip install pycocotools (evaluation)
 
 ## Video Captioning
 
