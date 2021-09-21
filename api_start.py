@@ -34,7 +34,7 @@ def upload_file():
             #save to path
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #print(filename)
-            fullcmd = "python full.py " + filename
+            fullcmd = "python caption_video.py " + filename
             #print(fullcmd)
             os.system(fullcmd)
             outputfile = filename + '-OUTPUT.json'

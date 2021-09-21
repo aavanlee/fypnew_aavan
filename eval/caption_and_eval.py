@@ -17,7 +17,7 @@ start_time = time.time()
 
 directory = str(sys.argv[1])
 #image caption
-cmd = 'python captionforcoco.py --dir=' +directory+ ' --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5'
+cmd = 'python caption_coco.py --dir=' +directory+ ' --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5'
 os.system(cmd)
 
 #image caption
