@@ -57,7 +57,7 @@ Running without API:
 Running with API:
 
 0. Activate venv: $ source venv-vidcap/bin/activate
-1. Run from terminal using $ python apistart.py 
+1. Run from terminal using $ python api_start.py 
 2. Go to http://127.0.0.1:5001/captionvideo on browser
 3. Browse disk for video file
 4. Click upload
