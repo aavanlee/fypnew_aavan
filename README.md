@@ -5,6 +5,7 @@ Downloads
 1. Download/clone this repository
 2. Download the file "model_checkpint.pth.tar" from https://drive.google.com/file/d/1OMnMuMuxEtKVmws2zNAlB3nhCVnwUTS4/view?usp=sharing
 3. Place the file "model_checkpint.pth.tar" in the repo directory
+4. model checkpoint source: https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning
 
 Ubuntu python setup
 1. sudo apt-get update
@@ -41,7 +42,7 @@ OR
 ## Video Captioning
 
 things to do:
-find link to model and put there
+
 check video extensions which can use
 clean up some more
 
