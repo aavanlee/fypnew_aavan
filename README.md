@@ -39,6 +39,7 @@ OR
 7. pip install scikit-image
 8. pip install Flask (API)
 9. pip install pycocotools (evaluation)
+10. pip install pycocoevalcap (evaluation)
 
 ## Video Captioning
 
