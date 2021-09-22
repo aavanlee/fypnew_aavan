@@ -140,9 +140,9 @@ except:
 end_time = time.time()
 cleanup_time = end_time - previous_time
 total_time = end_time - start_time
-print("Time taken for...")
+print("\nTime taken(s) for...")
 print("Keyframe detection: ", keyframe_time)
-print("Image captioning: ", keyframe_time)
+print("Image captioning: ", caption_time)
 print("Formatting: ", format_time)
 print("Removing adjacent duplicates: ", dupremove_time)
 print("Output and cleanup: ", cleanup_time)
