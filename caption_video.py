@@ -24,6 +24,10 @@ extractcmd = "python scenedetect.py -m 2s --input " +file +" detect-content --th
 os.system(extractcmd)
 #output to ./frames
 
+current_time = time.time()
+keyframe_time = current_time - start_time
+previous_time = current_time
+
 
 #sys.exit("Stopped")
 #start_time = time.time()
@@ -35,6 +39,9 @@ os.system(extractcmd)
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
 os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
 
+current_time = time.time()
+caption_time = current_time - previous_time
+previous_time = current_time
 
 ####------------------------------FORMATTING DATAFRAME------------------------------------------------------------------------------------------------####
 f = os.path.splitext(vidname)
@@ -61,26 +68,36 @@ print('\n')
 print(scenes_df)
 #print('\n')
 
+current_time = time.time()
+format_time = current_time - previous_time
+previous_time = current_time
 
 ####---------------------REMOVE ADJACENT DUPLICATE CAPTIONS-------------------------------------------------------------------------------------------####
 ##checks captions for similar adjacent captions and remove
 def removeadj(threshold):
     droplist = []
+    count = 0
     if threshold == 0:
         for i in range(1, len(scenes_df)):              
             if scenes_df['caption'][i] == scenes_df['caption'][i-1]:
+                count = count + 1
                 print("Adjacent duplicate caption found.")
-                scenes_df.at[i-1,'dur(s)'] = scenes_df['dur(s)'][i-1] + scenes_df['dur(s)'][i]
+                scenes_df.at[i-count,'dur(s)'] = scenes_df['dur(s)'][i-count] + scenes_df['dur(s)'][i]
                 droplist.append(i)
+            else:
+                count = 0
     return droplist
 
 droplist = removeadj(0)
 print("Index numbers(frame#-1) to be dropped: ", droplist)
-for i in range(len(droplist)):
-    scenes_df.drop(scenes_df.index[droplist[i]], inplace = True)
+scenes_df.drop(scenes_df.index[droplist], inplace = True)
 #frame# not reset so frame images can still be easily found 
 
 print(scenes_df)
+
+current_time = time.time()
+dupremove_time = current_time - previous_time
+previous_time = current_time
 
 ####--------------------------OUTPUT TO JSON----------------------------------------------------------------------------------------------------------####
 out = scenes_df.to_json(orient='records')
@@ -121,7 +138,14 @@ except:
     
 
 end_time = time.time()
-req_time = end_time - start_time
-print("time taken: ", req_time)
+cleanup_time = end_time - previous_time
+total_time = end_time - start_time
+print("Time taken for...")
+print("Keyframe detection: ", keyframe_time)
+print("Image captioning: ", keyframe_time)
+print("Formatting: ", format_time)
+print("Removing adjacent duplicates: ", dupremove_time)
+print("Output and cleanup: ", cleanup_time)
+print("Total time: ", total_time)
 
 
