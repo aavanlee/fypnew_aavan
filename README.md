@@ -43,7 +43,7 @@ OR
 
 ## Video Captioning
 
-Video keyframe extraction supports most video formats including: MP4, ts, MOV, AVI, Y4M, MKV, FLV, WMV.
+Video keyframe extraction supports most video formats including: mp4, ts, MOV, avi, y4m, mkv, flv, wmv.
 
 Running without API:
 
