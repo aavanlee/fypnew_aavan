@@ -42,9 +42,10 @@ OR
 5. pip install torchvision
 6. pip install matplotlib
 7. pip install scikit-image
-8. pip install Flask (API)
-9. pip install pycocotools (evaluation)
-10. pip install pycocoevalcap (evaluation)
+8. pip install PyTube (for video downlaod)
+9. pip install Flask (for API)
+10. pip install pycocotools (for evaluation)
+11. pip install pycocoevalcap (for evaluation)
 
 ## Video Download
 Videos can be downloaded using the PyTube based video downloading script. Videos downloaded using this method are automatically saved as mp4 to the "video_uploads" folder. 
