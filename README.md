@@ -1,5 +1,6 @@
 ## Video Captioning
-Program to generate captions for the keyframes of a video, when given a video file as input. 
+Program to generate captions for the keyframes of a video, given a video file as input. 
+
 ![alt text](https://github.com/aavanlee/vidcaption_aavan/blob/master/architecture.png?raw=true)
 
 ## Installation
