@@ -1,3 +1,6 @@
+## Video Captioning
+![alt text](https://github.com/aavanlee/vidcaption_aavan/blob/master/architecture.png?raw=true)
+
 ## Installation
 Usage steps for Ubuntu 16.04:
 
