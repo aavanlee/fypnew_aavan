@@ -49,8 +49,8 @@ OR
 ## Video Download
 Videos can be downloaded using the PyTube based video downloading script. Videos downloaded using this method are automatically saved as mp4 to the "video_uploads" folder. 
 
-Run from terminal using $ python download_video.py <youtube_URL> <name_to_save_as_without_extension>
-Example: python download_video.py https://www.youtube.com/watch?v=DocxmW2bOdc&t=80s singapore_dorm_cases
+1. Run from terminal using $ python download_video.py <youtube_URL> <name_to_save_as_without_extension>
+2. Example: python download_video.py https://www.youtube.com/watch?v=DocxmW2bOdc&t=80s singapore_dorm_cases
 
 ## Video Captioning
 
