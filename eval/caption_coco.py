@@ -13,6 +13,8 @@ from skimage.io import imread
 from skimage.transform import resize as imresize
 from PIL import Image
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -218,8 +220,10 @@ if __name__ == '__main__':
     
     predictiondict = {}
     directory_in_str = "./" + args.dir + "/"
-    print("\n")
-    print("Captioning " +directory_in_str+ "and evaluating against '" +args.dir+ "_coco_captions.json'")
+    if args.dir == "val2014":
+        print("Captioning " + directory_in_str + " and evaluating against 'captions_val2014.json' ...")
+    else:
+        print("Captioning " +directory_in_str+ " and evaluating against '" +args.dir+ "_coco_captions.json' ... ")
     #val2014 for using coco val set
     #DATASET for using test dataset
     directory = os.fsencode(directory_in_str)

@@ -20,7 +20,7 @@ file = "./video_uploads/" +vidname
 
 
 ####-------------------------------EXTRACT KEYFRAME---------------------------------------------------------------------------------------------------####
-extractcmd = "python scenedetect.py -m 2s --input " +file +" detect-content --threshold 29 list-scenes save-images"
+extractcmd = "python scenedetect.py --min-scene-len 2s --input "+file+" detect-content --threshold 29 list-scenes save-images"
 os.system(extractcmd)
 #output to ./frames
 
@@ -37,33 +37,33 @@ previous_time = current_time
 ####---------------------------------IMAGE CAPTION----------------------------------------------------------------------------------------------------####
 #Ensure model checkpoint and wordmap in working directory
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
-os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5')
+os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=3')
 
 current_time = time.time()
 caption_time = current_time - previous_time
 previous_time = current_time
 
 ####------------------------------FORMATTING DATAFRAME------------------------------------------------------------------------------------------------####
+pd.options.display.max_colwidth = 100
 f = os.path.splitext(vidname)
 csvfilename = f[0] +"-Scenes.csv"
-
-# Read in the data
+# Read in key frame timestamp data
 full_scenes_df = pd.read_csv(csvfilename)
 scenes_df = full_scenes_df[['Scene Number', 'Start Time (seconds)', 'Length (seconds)']].copy()
-#print(scenes_df.head(5))
-
+# Read in image caption data
 path_to_current_file = os.path.realpath(__file__)
 current_directory = os.path.split(path_to_current_file)[0]
 path_to_file = os.path.join(current_directory, "prediction.json")
 with open(path_to_file) as mydata:
     prediction_dict = json.load(mydata)
-
+# Formatting image caption data
 prediction_df = pd.DataFrame(list(prediction_dict.items()), columns = ['Frame', 'Caption'])
 prediction_df.sort_values(by=['Frame'], inplace=True, ascending=True)
 prediction_df.reset_index(inplace=True, drop = True)
-#print(prediction_df)
+# Concatenating timestamps with image captions
 scenes_df['Caption'] = pd.Series(prediction_df['Caption'])
 scenes_df.columns = ['frame#', 'stime', 'dur(s)', 'caption']
+# Print data
 print('\n')
 print(scenes_df)
 #print('\n')
@@ -104,9 +104,6 @@ out = scenes_df.to_json(orient='records')
 outputfile = vidname + '-OUTPUT.json'
 with open(outputfile, 'w') as f:
     f.write(out)
-
-
-
 
 ####-----------------------------CLEANUP--------------------------------------------------------------------------------------------------------------####
 deletethis = "prediction.json"

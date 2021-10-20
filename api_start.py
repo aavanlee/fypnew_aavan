@@ -44,8 +44,8 @@ def upload_file():
         
     return '''
     <!doctype html>
-    <title>Upload video</title>
-    <h1>Upload video</h1>
+    <title>Video Captioning</title>
+    <h1>Video Captioning</h1>
     <form method=post enctype=multipart/form-data>
       <input type=file name=file>
       <input type=submit value=Upload>

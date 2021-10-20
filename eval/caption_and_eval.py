@@ -17,7 +17,7 @@ start_time = time.time()
 
 directory = str(sys.argv[1])
 #image caption
-cmd = 'python caption_coco.py --dir=' +directory+ ' --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=5'
+cmd = 'python caption_coco.py --dir=' +directory+ ' --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=4'
 os.system(cmd)
 
 #image caption
@@ -33,26 +33,20 @@ with open(path_to_file) as mydata:
 prediction_df = pd.DataFrame(list(prediction_dict.items()), columns = ['image_id', 'caption'])
 prediction_df.sort_values(by=['image_id'], inplace=True, ascending=True)
 prediction_df.reset_index(inplace=True, drop = True)
-#print(prediction_df)
-
-#prediction_df['image_id'] = prediction_df['image_id'].str[19:-4]
-
 #[19:-4] deletes str values and extension for "COCO_val2014_"
-prediction_df['image_id'] = prediction_df['image_id'].str[8:-4]
-#[8:-4] deletes str values and extension for "DATASET_"
+prediction_df['image_id'] = prediction_df['image_id'].str[19:-4]
 prediction_df['image_id'] = pd.to_numeric(prediction_df['image_id'])
 print(prediction_df)
-
-#scenes_df['Caption'] = pd.Series(prediction_df['Caption'])
-#scenes_df.columns = ['frame#', 'stime', 'dur(s)', 'caption']
-#print('\n')
-#print(scenes_df)
-#print('\n')
-
 out = prediction_df.to_json(orient='records')
 outputfile = directory + '_coco-OUTPUT.json'
 with open(outputfile, 'w') as f:
     f.write(out)
+
+#eval using pycocoevalcap eval
+command = 'python coco_eval.py ' +directory
+os.system(command)
+
+
 
 ####CLEANUP
 deletethis = "predictionforcoco.json"
@@ -62,10 +56,6 @@ if os.path.isfile(deletethis):
     os.remove(deletethis)
 else:    ## Show an error ##
     print("Error: %s file not found" % deletethis)
-
-#eval using pycocoevalcap eval
-command = 'python coco_eval.py ' +directory
-os.system(command)
 
 ## removing output file
 try:

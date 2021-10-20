@@ -3,9 +3,9 @@ from pycocoevalcap.eval import COCOEvalCap
 import sys
 
 name = str(sys.argv[1])
-#annotation_file = 'captions_val2014.json' #FOR COCO VAL2014 SET
+annotation_file = 'captions_val2014.json' #FOR COCO VAL2014 SET
 
-annotation_file = name + '_coco_captions.json' #FOR TEST SET DSET
+#annotation_file = name + '_coco_captions.json' #FOR TEST DATASET
 
 results_file = name + '_coco-OUTPUT.json'
 
