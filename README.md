@@ -1,3 +1,8 @@
+## Video Captioning
+Program to generate captions for the keyframes of a video, given a video file as input. 
+
+![alt text](https://github.com/aavanlee/vidcaption_aavan/blob/master/architecture.png?raw=true)
+
 ## Installation
 Usage steps for Ubuntu 16.04:
 
@@ -37,9 +42,16 @@ OR
 5. pip install torchvision
 6. pip install matplotlib
 7. pip install scikit-image
-8. pip install Flask (API)
-9. pip install pycocotools (evaluation)
-10. pip install pycocoevalcap (evaluation)
+8. pip install PyTube (for video downlaod)
+9. pip install Flask (for API)
+10. pip install pycocotools (for evaluation)
+11. pip install pycocoevalcap (for evaluation)
+
+## Video Download
+Videos can be downloaded using the PyTube based video downloading script. Videos downloaded using this method are automatically saved as mp4 to the "video_uploads" folder. 
+
+1. Run from terminal using $ python download_video.py <youtube_URL> <name_to_save_as_without_extension>
+2. Example: python download_video.py https://www.youtube.com/watch?v=DocxmW2bOdc&t=80s singapore_dorm_cases
 
 ## Video Captioning
 
