@@ -16,6 +16,9 @@ import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 def caption_image_beam_search(encoder, decoder, image_path, word_map, beam_size=3):
     """

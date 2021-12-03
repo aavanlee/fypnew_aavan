@@ -37,6 +37,7 @@ previous_time = current_time
 ####---------------------------------IMAGE CAPTION----------------------------------------------------------------------------------------------------####
 #Ensure model checkpoint and wordmap in working directory
 #os.system('python predict.py --img-dir "frames" --model result/model_50000 --rnn nsteplstm --max-caption-length 30 --gpu 0 --dataset-name mscoco --out prediction.json')
+print("\nGenerating Captions...")
 os.system('python caption.py --model="model_checkpoint.pth.tar" --word_map="wordmap.json" --beam_size=3')
 
 current_time = time.time()
@@ -64,7 +65,6 @@ prediction_df.reset_index(inplace=True, drop = True)
 scenes_df['Caption'] = pd.Series(prediction_df['Caption'])
 scenes_df.columns = ['frame#', 'stime', 'dur(s)', 'caption']
 # Print data
-print('\n')
 print(scenes_df)
 #print('\n')
 
@@ -81,7 +81,6 @@ def removeadj(threshold):
         for i in range(1, len(scenes_df)):              
             if scenes_df['caption'][i] == scenes_df['caption'][i-1]:
                 count = count + 1
-                print("Adjacent duplicate caption found.")
                 scenes_df.at[i-count,'dur(s)'] = scenes_df['dur(s)'][i-count] + scenes_df['dur(s)'][i]
                 droplist.append(i)
             else:
@@ -89,11 +88,14 @@ def removeadj(threshold):
     return droplist
 
 droplist = removeadj(0)
-print("Index numbers(frame#-1) to be dropped: ", droplist)
-scenes_df.drop(scenes_df.index[droplist], inplace = True)
-#frame# not reset so frame images can still be easily found 
 
-print(scenes_df)
+if droplist != []:
+    print("\nAdjacent duplicate caption(s) found.")
+    droplist_frame_num = [j + 1 for j in droplist]
+    print("frame# to be dropped: ", droplist_frame_num)
+    scenes_df.drop(scenes_df.index[droplist], inplace = True)
+    #frame# not reset so frame images can still be easily found
+    print(scenes_df)
 
 current_time = time.time()
 dupremove_time = current_time - previous_time
@@ -144,5 +146,7 @@ print("Formatting: ", format_time)
 print("Removing adjacent duplicates: ", dupremove_time)
 print("Output and cleanup: ", cleanup_time)
 print("Total time: ", total_time)
+print("Output saved as: ", outputfile)
+print("\n")
 
 

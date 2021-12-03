@@ -31,6 +31,7 @@ coco_result = coco.loadRes(results_file)
 coco_eval = COCOEvalCap(coco, coco_result)
 coco_eval.params['image_id'] = coco_result.getImgIds()
 coco_eval.evaluate()
+print("\nEvaluation Scores:")
 for metric, score in coco_eval.eval.items():
     print(f'{metric}: {score:.3f}')
 
@@ -43,3 +44,5 @@ if os.path.isfile(deletethis):
     os.remove(deletethis)
 else:    ## Show an error ##
     print("Error: %s file not found" % deletethis)
+
+print("\n")
